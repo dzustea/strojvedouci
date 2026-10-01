@@ -1,0 +1,190 @@
+{
+  "_napoveda": "Tenhle soubor je jediné místo, kde se upravuje obsah webu. Po uložení stačí soubor nahrát na FTP, nic dalšího se nedělá. Návod je v README.md, kapitoly 4 az 6.",
+  "stav": {
+    "_napoveda": "Dokud kavárna neotevře, nechte otevreno na false. Po otevření přepněte na true a upravte texty v o_nas, koktejly a kuchyne z budoucího času na přítomný.",
+    "otevreno": false,
+    "kratce": "Brzy otevíráme",
+    "hero_popis": "Otevíráme",
+    "termin": "Jaro 2026",
+    "poznamka": "Přesné datum oznámíme na Instagramu. Otevírací doba níže platí od prvního dne."
+  },
+  "hlaska": {
+    "_napoveda": "Jedna veta v uvodu. Prvni cast je bezna, druha se zvyrazni barvou.",
+    "text": "Třicet schodů nahoru.",
+    "pointa": "Výtah neplánujeme."
+  },
+  "fotky": {
+    "uvod": "uvod.jpg",
+    "prostor": "prostor.jpg",
+    "o-nas": "o-nas.jpg"
+  },
+  "o_nas": {
+    "nadpis": "Otevíráme nahoře, kam zatím nikdo nechodil",
+    "text": "Dva roky jsme sháněli dům, kde by se dalo pražit, péct a zároveň sedět u okna. Našli jsme ho třicet schodů nad Žerotínovým náměstím, v místě, kudy chodili jen lidi na procházku se psem. Teď ho přestavujeme. Až otevřeme, budeme tu šlehat milkshaky z kopečkové zmrzliny, vařit kávu ze zrna, u kterého známe jméno farmáře, a každé ráno péct. Jsme tři a všichni tři budeme stát za pultem.",
+    "cisla": [
+      {
+        "hodnota": "2026",
+        "popis": "Otevíráme"
+      },
+      {
+        "hodnota": "30",
+        "popis": "Schodů nahoru"
+      },
+      {
+        "hodnota": "10",
+        "popis": "Stolů uvnitř"
+      }
+    ]
+  },
+  "koktejly": {
+    "nadpis": "Šest milkshaků z pravé zmrzliny",
+    "podnadpis": "Tohle je nabídka, se kterou otevřeme. Šlehat je budeme na objednávku z kopečkové zmrzliny a vychlazeného mléka. Žádné prášky, žádné sirupy z pumpičky.",
+    "polozky": [
+      {
+        "nazev": "Slaný karamel",
+        "popis": "Vanilková zmrzlina z Vysočiny a karamel vařený do tmava, dokud nezhořkne akorát. Navrch vločka mořské soli a lžíce šlehačky. Hustý tak, že brčko chvíli stojí samo.",
+        "cena": 139,
+        "obrazek": "slany-karamel.jpg",
+        "znacky": [],
+        "dostupny": true
+      },
+      {
+        "nazev": "Pistácie",
+        "popis": "Sicilské pistácie budeme pražit a mlít každé ráno, takže bude v milkshaku cítit jádro, ne aroma. Doslazovat budeme jen medem. Barva je nazelenalá, ne neonová, a to je dobře.",
+        "cena": 155,
+        "obrazek": "pistacie.jpg",
+        "znacky": [],
+        "dostupny": true
+      },
+      {
+        "nazev": "Hořká čokoláda 70 %",
+        "popis": "Belgická čokoláda rozpuštěná v horkém mléce a zchlazená přes noc, aby nezrnila. Pro dospělé: sladkost drží vzadu a zůstává kakaová hořkost.",
+        "cena": 149,
+        "obrazek": "horka-cokolada.jpg",
+        "znacky": [],
+        "dostupny": true
+      },
+      {
+        "nazev": "Malina a bílá čokoláda",
+        "popis": "Maliny mrazíme v sezóně, takže budou chutnat jako v červenci i v lednu. Bílá čokoláda je tu kvůli textuře, ne kvůli cukru. Nahoře pár celých plodů.",
+        "cena": 145,
+        "obrazek": "malina.jpg",
+        "znacky": [],
+        "dostupny": true
+      },
+      {
+        "nazev": "Espresso shake",
+        "popis": "Dvojité espresso z našeho zrna zašlehané do vanilkové zmrzliny. Chutná jako affogato, které někdo nechal moc dlouho stát, a přesně o to jde.",
+        "cena": 139,
+        "obrazek": "espresso-shake.jpg",
+        "znacky": [
+          "S kofeinem"
+        ],
+        "dostupny": true
+      },
+      {
+        "nazev": "Mango a limetka",
+        "popis": "Kokosová báze místo mléčné, takže bude lehčí než ostatní. Zralé mango, šťáva ze dvou limetek a špetka soli. Celý veganský, aniž by to bylo poznat.",
+        "cena": 145,
+        "obrazek": "mango-limetka.jpg",
+        "znacky": [
+          "Veganský"
+        ],
+        "dostupny": true
+      }
+    ]
+  },
+  "kava": {
+    "nadpis": "Káva, kterou bychom pili i doma",
+    "podnadpis": "Jedno zrno na espresso celý rok, jedno na filtr se bude měnit po týdnech. Rostlinná mléka nepřiplácíte.",
+    "zrno_tydne": {
+      "stitek": "Zrno, se kterým otevíráme",
+      "nazev": "Kirinyaga AA",
+      "puvod": "Kirinyaga, Keňa",
+      "vyska": "1 750 m n. m.",
+      "zpracovani": "Praná",
+      "chute": [
+        "Rybíz",
+        "Třtinový cukr",
+        "Černý čaj"
+      ],
+      "poznamka": "S tímhle zrnem začneme na filtru. Po pár týdnech přijde další, tak si ho dejte, dokud bude."
+    },
+    "cenik": [
+      {
+        "nazev": "Espresso",
+        "cena": "65"
+      },
+      {
+        "nazev": "Flat white",
+        "cena": "85"
+      },
+      {
+        "nazev": "Cappuccino",
+        "cena": "79"
+      },
+      {
+        "nazev": "Filtr V60, 250 ml",
+        "cena": "95"
+      },
+      {
+        "nazev": "Cold brew",
+        "cena": "89"
+      },
+      {
+        "nazev": "Zrno na doma, 250 g",
+        "cena": "od 289"
+      }
+    ]
+  },
+  "kuchyne": {
+    "nadpis": "Snídat se bude do jedenácti",
+    "podnadpis": "Péct budeme každé ráno. Co zbyde do zavírací doby, půjde večer do potravinové banky.",
+    "poznamka": "Bezlepkové a veganské varianty budeme mít denně, stačí říct u objednávky.",
+    "polozky": [
+      {
+        "nazev": "Kváskový chléb, avokádo, vejce",
+        "popis": "Chléb zaděláváme večer předtím a pečeme ho ráno v šest. Vejce zastřené, avokádo s limetkou a chilli vločkami, navrch ředkvička.",
+        "cena": 185,
+        "obrazek": "chleba-avokado.jpg"
+      },
+      {
+        "nazev": "Jogurt, granola, ovoce",
+        "popis": "Granolu pečeme s javorovým sirupem, mandlemi a kokosem. Jogurt bude bílý z farmy u Náměště. Ovoce podle toho, co bude zrovna zralé.",
+        "cena": 135,
+        "obrazek": "jogurt-granola.jpg"
+      },
+      {
+        "nazev": "Croissant s máslem",
+        "popis": "Dvakrát denně čerstvý, vždycky v osm a ve dvanáct. K němu domácí meruňková marmeláda a kyselá smetana.",
+        "cena": 95,
+        "obrazek": "croissant.jpg"
+      },
+      {
+        "nazev": "Dort dne",
+        "popis": "Rozhodne ráno cukrářka podle toho, co našla na trhu. Většinou mrkvový s ořechy nebo cheesecake se sezónním ovocem.",
+        "cena": 95,
+        "obrazek": "dort-dne.jpg"
+      },
+      {
+        "nazev": "Polévka dne",
+        "popis": "Jedna, vždycky zeleninová, vždycky s domácím chlebem. Od jedenácti do vyprodání, což bývá kolem druhé.",
+        "cena": 95,
+        "obrazek": "polevka.jpg"
+      }
+    ]
+  },
+  "instagram": {
+    "nadpis": "Sledujte, jak to tu roste",
+    "text": "Přestavbu, zkoušky zrna i první upečené croissanty dáváme na Instagram. Datum otevření oznámíme tam a na Facebooku jako první.",
+    "ucet": "kavarnanakopci",
+    "odkaz_instagram": "https://www.instagram.com/kavarnanakopci",
+    "odkaz_facebook": "https://www.facebook.com/kavarnanakopci",
+    "posledni_prispevek": {
+      "obrazek": "instagram-posledni.jpg",
+      "popisek": "Pákovač je na místě. Tenhle týden kalibrujeme a ochutnáváme, co bude na espressu.",
+      "datum": "2026-09-29",
+      "odkaz": "https://www.instagram.com/kavarnanakopci"
+    }
+  }
+}

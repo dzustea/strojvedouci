@@ -1,0 +1,104 @@
+# ==========================================================
+# Kavárna Na Kopci - konfigurace pro Apache (webhosting Vedos)
+# Nahrát do kořene webu, obvykle /www nebo /web
+# ==========================================================
+
+DirectoryIndex index.php
+Options -Indexes
+ErrorDocument 404 /404.html
+
+# ---------- Data a šablona nejsou veřejné ----------
+# Web je čte ze serveru, z prohlížeče je stahovat nikdo nemusí.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^(data|templates)/ - [F,L]
+
+  # Vynutit HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # Vynutit www. Pokud chcete doménu bez www, obraťte toto pravidlo.
+  RewriteCond %{HTTP_HOST} ^kavarnanakopci\.cz$ [NC]
+  RewriteRule ^(.*)$ https://www.kavarnanakopci.cz/$1 [R=301,L]
+
+  # /index.php v adrese není potřeba
+  RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+</IfModule>
+
+# Záloha pro případ, že by mod_rewrite nebyl zapnutý
+<FilesMatch "\.(json|htaccess)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ---------- Komprese ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript image/svg+xml
+</IfModule>
+
+# ---------- Cache ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                       "access plus 1 month"
+  ExpiresByType text/html              "access plus 0 seconds"
+  ExpiresByType text/css               "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2             "access plus 1 year"
+  ExpiresByType image/svg+xml          "access plus 1 year"
+  ExpiresByType image/jpeg             "access plus 6 months"
+  ExpiresByType image/png              "access plus 6 months"
+  ExpiresByType image/webp             "access plus 6 months"
+  ExpiresByType image/avif             "access plus 6 months"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|woff2|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|avif)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+  <FilesMatch "\.php$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+
+  # ---------- Bezpečnostní hlavičky ----------
+  # Content-Security-Policy posílá index.php, protože potřebuje nonce.
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header unset X-Powered-By
+  Header always unset X-Powered-By
+</IfModule>
+
+# ---------- Typy souborů ----------
+<IfModule mod_mime.c>
+  AddType font/woff2    .woff2
+  AddType image/svg+xml .svg
+  AddType image/webp    .webp
+  AddType image/avif    .avif
+  AddCharset UTF-8      .html .css .js .json
+</IfModule>
+
+# ---------- PHP ----------
+<IfModule mod_php.c>
+  php_flag display_errors Off
+  php_flag expose_php Off
+</IfModule>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Na Kopci - milkshaky a výběrová káva v Třebíči</title>
+<meta name="description" content="Milkshaky z pravé zmrzliny, espresso z malé pražírny a domácí snídaně. Třebíč, Na Kopci 12. Po až So 7:30 do 18:00, Ne 9:00 do 16:00.">
+<meta name="theme-color" content="#EBEBE8">
+<link rel="canonical" href="https://www.kavarnanakopci.cz/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="Kavárna Na Kopci">
+<meta property="og:title" content="Na Kopci - milkshaky a výběrová káva v Třebíči">
+<meta property="og:description" content="Šest milkshaků z pravé zmrzliny, espresso z malé pražírny a domácí snídaně.">
+<meta property="og:url" content="https://www.kavarnanakopci.cz/">
+<meta property="og:image" content="https://www.kavarnanakopci.cz/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/styles.css">
+
+<script type="application/ld+json" nonce="{{NONCE}}">{{SCHEMA}}</script>
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<header class="topbar">
+  <a class="logo" href="#obsah">
+    <span class="logo__t">Na Kopci</span>
+    {{STAV}}
+  </a>
+
+  <nav class="topbar__nav" aria-label="Hlavní navigace">
+    <span class="topbar__ind" aria-hidden="true"></span>
+    <a href="#o-nas">O nás</a>
+    <a href="#milkshaky">Milkshaky</a>
+    <a href="#kava">Káva</a>
+    <a href="#kuchyne">Kuchyně</a>
+    <a href="#navsteva">Kontakt</a>
+  </nav>
+
+  <button class="burger" type="button" aria-expanded="false" aria-controls="mobilni-menu">
+    <span class="burger__box" aria-hidden="true"><i></i><i></i></span>
+    <span class="burger__txt">Menu</span>
+  </button>
+</header>
+
+<div class="sheet" id="mobilni-menu" hidden>
+  <nav class="sheet__nav" aria-label="Menu">
+    <a href="#o-nas">O nás</a>
+    <a href="#milkshaky">Milkshaky</a>
+    <a href="#kava">Káva</a>
+    <a href="#kuchyne">Kuchyně</a>
+    <a href="#prostor">Prostor</a>
+    <a href="#navsteva">Kontakt</a>
+  </nav>
+  <p class="sheet__info">
+    Na Kopci 12, 674 01 Třebíč<br>
+    <a href="tel:+420777123456">+420 777 123 456</a>
+  </p>
+</div>
+
+<main id="obsah">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__text">
+      <h1 class="hero__h1">Milkshaky a výběrová káva</h1>
+      <p class="hero__sub">Kousek nad Třebíčí. Šest milkshaků z pravé zmrzliny, espresso z malé pražírny a domácí snídaně.</p>
+      <div class="hero__cta">
+        <a class="btn btn--fill" href="#milkshaky">
+          Prohlédnout milkshaky
+          <svg class="btn__arrow" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h17"/><path d="M13 1l5 5-5 5"/></svg>
+        </a>
+        <a class="btn btn--quiet" href="#navsteva">Kde nás najdete</a>
+      </div>
+      {{HLASKA}}
+    </div>
+
+    <figure class="hero__media">
+      {{FOTO_UVOD}}
+    </figure>
+  </section>
+
+  <!-- O NÁS -->
+  <section class="sec sec--onas" id="o-nas">
+    {{O_NAS}}
+  </section>
+
+  <!-- KOKTEJLY -->
+  <section class="sec" id="milkshaky" data-karusel>
+    {{MILKSHAKY}}
+  </section>
+
+  <!-- KÁVA -->
+  <section class="sec" id="kava">
+    {{KAVA}}
+  </section>
+
+  <!-- KUCHYNĚ -->
+  <section class="sec" id="kuchyne" data-karusel>
+    {{KUCHYNE}}
+  </section>
+
+  <!-- PROSTOR -->
+  <section class="sec sec--flush" id="prostor">
+    <figure class="scene">
+      {{FOTO_PROSTOR}}
+      <figcaption class="scene__card">
+        <h2 class="h2 h2--sm">Deset stolů a terasa od dubna</h2>
+        <p>Nahoru vede třicet schodů od Žerotínova náměstí. Nahoře je klid, zásuvka u každého stolu a výhled, kvůli kterému sem lidi chodí i bez kávy.</p>
+        <ul class="chips">
+          <li>Wi-Fi zdarma</li>
+          <li>Psi vítáni</li>
+          <li>Bezbariérový vstup</li>
+          <li>Platba kartou</li>
+        </ul>
+        <button class="galerie-btn" type="button" data-galerie hidden>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1.5" y="3.5" width="10" height="9" rx="1.8"/><path d="M14.5 5.5v7a2 2 0 0 1-2 2H5"/><path d="M1.5 10l2.5-2.5 3 3"/>
+          </svg>
+          Prohlédnout fotky <b data-galerie-pocet></b>
+        </button>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- SOCIÁLNÍ SÍTĚ -->
+  <section class="sec" id="site">
+    {{SITE}}
+  </section>
+
+  <!-- NÁVŠTĚVA -->
+  <section class="sec" id="navsteva">
+    <div class="sec__head">
+      <h2 class="h2">Zastavte se</h2>
+    </div>
+    <div class="info">
+      <div class="info__b">
+        <h3 class="info__h">Otevírací doba</h3>
+        <ul class="hours">
+          <li data-dny="1,2,3,4,5,6"><span>Pondělí až sobota</span><b>7:30 - 18:00</b></li>
+          <li data-dny="0"><span>Neděle</span><b>9:00 - 16:00</b></li>
+        </ul>
+        <p class="fine">{{HODINY_POZN}}</p>
+      </div>
+
+      <div class="info__b">
+        <h3 class="info__h">Adresa</h3>
+        <p class="addr" id="adresa">Na Kopci 12, 674 01 Třebíč</p>
+        <button class="copy" type="button" data-kopirovat="Na Kopci 12, 674 01 Třebíč" aria-describedby="adresa">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="2"/><path d="M10.5 3.5A1.8 1.8 0 0 0 8.7 2.5H4.3A1.8 1.8 0 0 0 2.5 4.3v4.4a1.8 1.8 0 0 0 1 1.7"/></svg>
+          <span class="copy__t">Kopírovat adresu</span>
+        </button>
+        <p class="fine">Parkování na Žerotínově náměstí, odtud pět minut pěšky.</p>
+      </div>
+
+      <div class="info__b">
+        <h3 class="info__h">Kontakt</h3>
+        <ul class="links">
+          <li><a href="tel:+420777123456">+420 777 123 456</a></li>
+          <li><a href="mailto:ahoj@kavarnanakopci.cz">ahoj@kavarnanakopci.cz</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__row">
+    <p class="foot__mark">Na Kopci</p>
+    <p class="foot__addr">Na Kopci 12, 674 01 Třebíč</p>
+  </div>
+  <div class="foot__bar">
+    <p>&copy; {{ROK}} Kavárna Na Kopci</p>
+    <p class="foot__kredit">Design &amp; dev /
+      <a href="https://filiplochman.cz" target="_blank" rel="noopener">Filip Lochman</a>
+    </p>
+    <a class="foot__nahoru" href="#obsah">Nahoru</a>
+  </div>
+</footer>
+
+<dialog class="lupa" aria-label="Galerie fotek">
+  <figure class="lupa__in">
+    <button class="lupa__x" type="button" aria-label="Zavřít galerii">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+    </button>
+    <button class="lupa__sip lupa__sip--zpet" type="button" aria-label="Předchozí fotka">
+      <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 6H2"/><path d="M7 1L2 6l5 5"/></svg>
+    </button>
+    <button class="lupa__sip lupa__sip--vpred" type="button" aria-label="Další fotka">
+      <svg viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h17"/><path d="M13 1l5 5-5 5"/></svg>
+    </button>
+    <div class="lupa__media"></div>
+    <figcaption class="lupa__cap">
+      <span class="lupa__popis"></span>
+      <span class="lupa__pocet"></span>
+    </figcaption>
+  </figure>
+</dialog>
+
+<p class="toast" role="status" aria-live="polite"></p>
+
+<script src="assets/app.js" defer></script>
+</body>
+</html>
