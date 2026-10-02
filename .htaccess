@@ -26,6 +26,13 @@ ErrorDocument 404 /404.html
   # /index.php v adrese není potřeba
   RewriteCond %{THE_REQUEST} \s/+index\.php[\s?] [NC]
   RewriteRule ^ / [R=301,L]
+
+  # Čisté adresy právních stránek, stejně jako je umí Vercel.
+  # /cookies najde cookies.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^/.]+)/?$ /$1.html [L]
 </IfModule>
 
 # Záloha pro případ, že by mod_rewrite nebyl zapnutý
@@ -78,7 +85,7 @@ ErrorDocument 404 /404.html
   </FilesMatch>
 
   # ---------- Bezpečnostní hlavičky ----------
-  # Content-Security-Policy posílá index.php, protože potřebuje nonce.
+  # Content-Security-Policy posílá index.php, protože obsahuje otisk vložených dat.
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"

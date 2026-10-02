@@ -509,21 +509,29 @@ $schemaJson = json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASH
 if ($schemaJson === false) {
     $schemaJson = '{}';
 }
+// Pojistka proti předčasnému ukončení <script> bloku.
 $schemaJson = str_replace('<', '<', $schemaJson);
 
-/* ---------- Hlavičky ---------- */
+/* ---------- Hlavičky a bezpečnostní politika ---------- */
 
-$nonce = base64_encode(random_bytes(16));
+/* Jediný vložený script na stránce jsou strukturovaná data. Spočítáme jeho
+   otisk, takže politika zůstane přísná bez 'unsafe-inline'. Stejný výpočet
+   dělá i lib/render.js, aby obě cesty nasazení vydaly stejnou stránku. */
+$otisk = base64_encode(hash('sha256', $schemaJson, true));
+
+$csp = "default-src 'self'; "
+     . "script-src 'self' 'sha256-" . $otisk . "'; "
+     . "style-src 'self'; "
+     . "img-src 'self' data:; "
+     . "font-src 'self'; "
+     . "connect-src 'self'; "
+     . "base-uri 'self'; "
+     . "form-action 'self'; "
+     . "object-src 'none'";
 
 header('Content-Type: text/html; charset=UTF-8');
-header(
-    "Content-Security-Policy: default-src 'self'; "
-    . "script-src 'self' 'nonce-" . $nonce . "'; "
-    . "style-src 'self'; "
-    . "img-src 'self' data:; "
-    . "font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; "
-    . "frame-ancestors 'self'; object-src 'none'"
-);
+// frame-ancestors v meta značce neplatí, proto jde hlavičkou.
+header('Content-Security-Policy: ' . $csp . "; frame-ancestors 'self'");
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 
@@ -552,5 +560,5 @@ echo strtr($sablona, [
     '{{HODINY_POZN}}'        => h($hodinyPozn),
     '{{ROK}}'                => date('Y'),
     '{{SCHEMA}}'             => $schemaJson,
-    '{{NONCE}}'              => h($nonce),
+    '{{CSP}}'                => '<meta http-equiv="Content-Security-Policy" content="' . h($csp) . '">',
 ]);

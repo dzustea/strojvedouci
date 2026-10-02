@@ -892,3 +892,111 @@ html{ scrollbar-gutter: stable; }   /* jen aby stránka neposkakovala */
   .sec__head--rada{ gap:1rem; }
   .sipky{ gap:.3rem; }
 }
+
+/* ==========================================================================
+   Právní stránky (cookies, ochrana údajů)
+   Jednoduchý čtecí sloupec, stejná paleta i typografie jako zbytek webu.
+   ========================================================================== */
+.pravni{
+  max-width:44rem;
+  margin:0 auto;
+  padding:clamp(2.5rem,6vw,5rem) var(--gutter) clamp(3.5rem,7vw,6rem);
+}
+.pravni__zpet{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-size:.88rem; color:var(--ink-2);
+  transition:color .3s var(--out);
+}
+.pravni__zpet svg{ width:1.05rem; transition:transform .35s var(--out); }
+.pravni__zpet:hover{ color:var(--pop-ink); }
+.pravni__zpet:hover svg{ transform:translateX(-.2rem); }
+
+.pravni h1{
+  margin-top:1.75rem;
+  font-size:clamp(1.9rem,1.4rem + 2vw,3rem);
+  line-height:1.1; letter-spacing:-.03em; font-weight:600;
+  text-wrap:balance;
+}
+.pravni__uvod{
+  margin-top:1.1rem;
+  font-size:clamp(1.02rem,.98rem + .3vw,1.14rem);
+  line-height:1.65; color:var(--ink-2);
+}
+.pravni__platnost{
+  display:inline-block; margin-top:1.5rem;
+  font-family:"Geist Mono",ui-monospace,monospace;
+  font-size:.74rem; color:var(--ink-3);
+  padding:.35rem .7rem; border:1px solid var(--line); border-radius:var(--r);
+}
+
+.pravni h2{
+  margin-top:clamp(2.5rem,5vw,3.5rem);
+  padding-top:1.5rem; border-top:1px solid var(--line);
+  font-size:clamp(1.2rem,1.05rem + .5vw,1.5rem);
+  letter-spacing:-.02em; font-weight:600;
+}
+.pravni h3{
+  margin-top:1.75rem;
+  font-size:1.02rem; font-weight:600; letter-spacing:-.01em;
+}
+.pravni p{ margin-top:.9rem; line-height:1.72; color:var(--ink-2); }
+.pravni p strong{ color:var(--ink); font-weight:500; }
+
+.pravni ul{ margin-top:1rem; display:grid; gap:.6rem; }
+.pravni ul li{
+  position:relative; padding-left:1.2rem;
+  line-height:1.65; color:var(--ink-2);
+}
+.pravni ul li::before{
+  content:""; position:absolute; left:0; top:.62em;
+  width:.38rem; height:.38rem; border-radius:50%; background:var(--pop);
+}
+
+.pravni a:not(.pravni__zpet):not(.btn){
+  color:var(--pop-ink);
+  background-image:linear-gradient(currentColor,currentColor);
+  background-size:0 1px; background-position:0 100%; background-repeat:no-repeat;
+  transition:background-size .35s var(--out);
+}
+.pravni a:not(.pravni__zpet):not(.btn):hover{ background-size:100% 1px; }
+
+/* Zvýrazněná odpověď na hlavní otázku stránky */
+.pravni__shrnuti{
+  margin-top:2rem; padding:clamp(1.25rem,3vw,1.75rem);
+  border-radius:var(--r); background:var(--surface);
+  border:1px solid var(--line-2);
+  position:relative; overflow:hidden;
+}
+.pravni__shrnuti::before{
+  content:""; position:absolute; inset:0 auto 0 0; width:3px;
+  background:var(--pop);
+}
+.pravni__shrnuti p{ margin-top:0; color:var(--ink); font-size:1.02rem; }
+.pravni__shrnuti p + p{ margin-top:.7rem; color:var(--ink-2); font-size:.95rem; }
+
+/* Údaje, které musí doplnit provozovatel */
+.pravni__doplnit{
+  font-family:"Geist Mono",ui-monospace,monospace; font-size:.86rem;
+  padding:.1rem .4rem; border-radius:5px;
+  background:var(--pop-soft); color:var(--pop-ink);
+}
+
+.pravni__tabulka{ margin-top:1.25rem; display:grid; gap:0; }
+.pravni__tabulka > div{
+  display:grid; grid-template-columns:minmax(0,10rem) minmax(0,1fr); gap:.5rem 1.25rem;
+  padding:.85rem 0; border-bottom:1px solid var(--line-2);
+}
+.pravni__tabulka dt{ font-size:.88rem; color:var(--ink-3); }
+.pravni__tabulka dd{ font-size:.95rem; color:var(--ink-2); line-height:1.6; }
+
+@media (max-width:620px){
+  .pravni__tabulka > div{ grid-template-columns:1fr; gap:.2rem; padding:.75rem 0; }
+}
+
+/* Odkazy na právní stránky v patičce */
+.foot__odkazy{
+  display:flex; flex-wrap:wrap; gap:.4rem 1.25rem;
+  font-size:.8rem;
+}
+.foot__odkazy a{ color:var(--ink-3); transition:color .3s var(--out); }
+.foot__odkazy a:hover{ color:var(--ink); }

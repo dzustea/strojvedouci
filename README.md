@@ -30,19 +30,58 @@ Obsah je tím pádem rovnou v HTML, takže ho vidí i Google. To je rozdíl opro
 
 ---
 
-## 2. Nasazení na Vedos
+## 2. Kam se to dá nasadit
 
-1. Nahrajte **obsah této složky** (ne složku samotnou) do kořene webu,
-   u Vedosu obvykle `/www` nebo `/web`.
+Web jde nasadit dvěma způsoby. Obě cesty skládají stránku ze stejné šablony
+a stejného JSONu, takže vypadají úplně stejně.
+
+| | Vercel | Vedos |
+|---|---|---|
+| Jak to funguje | build při nasazení, výsledek je statické HTML | PHP složí stránku při každém načtení |
+| Co dělá úprava obsahu | změníte JSON, pushnete na GitHub, Vercel to samo postaví | změníte JSON, nahrajete na FTP, hotovo |
+| Potřebuje | účet na Vercelu a GitHub | PHP 8.0+ na hostingu |
+| Rychlost | o kousek vyšší, vše je na CDN | taky rychlé, ale PHP běží při každém načtení |
+
+### Nasazení na Vercel
+
+Na Vercelu **nefunguje PHP**. Když tam nahrajete `index.php`, Vercel ho
+nespustí a prohlížeč místo stránky nabídne stažení souboru. Proto je tu
+`build.js`, který stránku složí předem.
+
+1. Repozitář propojte s Vercelem (Add New, Project, import z GitHubu).
+2. Ve **Framework Preset** nechte **Other**. Zbytek si Vercel přečte
+   z `vercel.json`:
+   - Build Command: `node build.js`
+   - Output Directory: `dist`
+3. Deploy. Od té chvíle stačí pushnout na GitHub a Vercel nasadí sám.
+
+Build spadne a nenasadí rozbitou stránku, když je v JSONu chyba nebo
+v šabloně zůstane nenahrazená značka.
+
+Lokálně si to vyzkoušíte stejně, jako to dělá Vercel:
+
+```bash
+node build.js
+```
+
+### Nasazení na Vedos
+
+1. Nahrajte **obsah této složky** do kořene webu, obvykle `/www` nebo `/web`.
 2. Nahrajte i soubor **`.htaccess`**. V FTP klientech bývá skrytý, protože
    začíná tečkou, takže zapněte zobrazení skrytých souborů.
-3. **Nenahrávejte složku `.claude/`.** Je v ní jen pomocný server pro náhled
-   na vlastním počítači.
+3. **Nenahrávejte** složky `.claude/`, `dist/` a `node_modules/`.
+   Soubory `build.js`, `lib/`, `package.json` a `vercel.json` tam
+   taky nemají co dělat, ale nevadí, když tam zůstanou.
+
+Vedos musí mít u domény zapnuté PHP 8.0 nebo novější. Bývá to výchozí
+nastavení, zkontrolovat to jde v administraci hostingu.
 
 ```
 /www
 ├── index.php            ← složí stránku
 ├── 404.html
+├── cookies.html
+├── ochrana-udaju.html
 ├── .htaccess
 ├── robots.txt
 ├── sitemap.xml
@@ -63,8 +102,13 @@ Obsah je tím pádem rovnou v HTML, takže ho vidí i Google. To je rozdíl opro
         └── kuchyne/       ← fotky snídaní
 ```
 
-Vedos musí mít u domény zapnuté PHP 8.0 nebo novější. Bývá to výchozí
-nastavení, zkontrolovat to jde v administraci hostingu.
+### Pozor na dvě cesty
+
+Stránku umí složit dva kusy kódu: `lib/render.js` (Vercel i náhled)
+a `index.php` (Vedos). Dokud se mění jen obsah v JSONu, nic neřešíte.
+**Když ale budete měnit strukturu stránky, musí se upravit oba.**
+Až bude jasné, kde web nakonec poběží, ten druhý se smaže a problém zmizí.
+
 
 ---
 
@@ -78,6 +122,9 @@ nastavení, zkontrolovat to jde v administraci hostingu.
 6. **Prostor** s fotkou přes celou šířku a tlačítkem do galerie
 7. **Co je u nás nového** s odkazy na Instagram a Facebook a posledním příspěvkem
 8. **Zastavte se** s otevírací dobou, adresou a kontakty
+
+Mimo hlavní stránku jsou ještě **Ochrana osobních údajů** (`/ochrana-udaju`)
+a **Cookies** (`/cookies`), odkazované z patičky.
 
 ---
 
@@ -273,7 +320,43 @@ nevyplatí tahat na web cizí skript.
 
 ---
 
-## 7. Co ještě doplnit před spuštěním
+## 7. Právní stránky
+
+Web **nepoužívá žádné cookies**, neměří návštěvnost a nemá formuláře. Proto
+tam **není a nemusí být lišta se souhlasem** s cookies. Souhlas se vyžaduje
+jen u cookies, které nejsou technicky nezbytné, a žádné takové tu nejsou.
+
+Jsou tu dvě stránky:
+
+- `cookies.html` vysvětluje, že se nic neukládá, a co by se změnilo,
+  kdybyste někdy přidali měření nebo vložený příspěvek z Instagramu
+- `ochrana-udaju.html` popisuje, co se zpracovává i tak: provozní logy
+  serveru a údaje z e-mailů a telefonátů
+
+**Obě stránky jsou připravené, ale musíte do nich doplnit údaje.** Hledejte
+růžově zvýrazněné bloky `DOPLNIT`:
+
+| Co | Kde |
+|---|---|
+| Datum platnosti | obě stránky, nahoře |
+| Obchodní firma nebo jméno podnikatele | ochrana-udaju.html |
+| Sídlo a IČO | ochrana-udaju.html |
+| Doba uchování provozních logů | ochrana-udaju.html, zjistíte u hostingu |
+| Doba uchování e-mailové komunikace | ochrana-udaju.html |
+| Poskytovatel hostingu a e-mailu | ochrana-udaju.html |
+
+Tyhle údaje si nemůžu domyslet, musí sedět na skutečný subjekt.
+
+Texty jsou psané tak, aby odpovídaly tomu, co web opravdu dělá, ale nejsou
+právní posudek. Pokud přidáte rezervace, e-shop nebo měření návštěvnosti,
+nechte si je projít někým, kdo tohle dělá.
+
+Kdybyste někdy měření přidali, bude potřeba doplnit i lištu se souhlasem.
+Řekněte a dodělám ji.
+
+---
+
+## 8. Co ještě doplnit před spuštěním
 
 Texty jsou hotové, ale **kontaktní údaje jsou zástupné**.
 
@@ -299,7 +382,7 @@ rozměr 1200 × 630 px. Do té doby se odkaz sdílí bez obrázku.
 
 ---
 
-## 8. Design
+## 9. Design
 
 **Paleta.** Světlá neutrální plocha a jedna akcentní barva. Nic jiného.
 
@@ -339,7 +422,7 @@ v systému zapnuté omezení pohybu.
 
 ---
 
-## 9. Rychlost, přístupnost, bezpečnost
+## 10. Rychlost, přístupnost, bezpečnost
 
 **Rychlost**
 - žádný framework, dohromady zhruba 11,5 kB kódu po kompresi
@@ -375,7 +458,7 @@ v systému zapnuté omezení pohybu.
 
 ---
 
-## 10. Lokální náhled
+## 11. Lokální náhled
 
 Na počítači bez PHP se web zobrazí přes pomocný server v `.claude/`.
 Čte stejnou šablonu i stejný JSON jako ostrá verze:
